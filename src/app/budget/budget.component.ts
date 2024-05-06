@@ -23,6 +23,8 @@ export class BudgetComponent implements OnInit {
   ];
   selectedMonth: string = '';
   budgets: any[] = [];
+  displayedColumns: string[] = ['budgetCriteria', 'amount']; // Define displayedColumns here
+
 
   constructor(private budgetService: BudgetService) {}
 

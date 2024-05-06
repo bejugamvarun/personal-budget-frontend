@@ -1,29 +1,39 @@
 <div class="signup-container">
-  <div class="form-container">
+  <mat-card class="form-container">
     <h2>Sign Up</h2>
-    <form (ngSubmit)="onSubmit()">
-      <div>
-        <input type="text" id="name" name="name" [(ngModel)]="firstName" placeholder="First Name" required>
-      </div>
-      <div>
-        <input type="text" id="name" name="name" [(ngModel)]="lastName" placeholder="Last Name" required>
-      </div>
-      <div>
-        <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Email" required>
-      </div>
-      <div>
-        <input type="text" id="username" name="username" [(ngModel)]="username" placeholder="Username" required>
-      </div>
-      <div>
-        <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Password" required>
-      </div>
-      <div>
-        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirm password" required>
-      </div>
-      <div>
-        <button type="submit">Sign Up</button>
-      </div>
+    <form (ngSubmit)="onSubmit()" class="example-form">
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" id="firstName" name="firstName" [(ngModel)]="firstName" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" id="lastName" name="lastName" [(ngModel)]="lastName" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" id="email" name="email" [(ngModel)]="email" placeholder="Email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" id="username" name="username" [(ngModel)]="username" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" id="password" name="password" [(ngModel)]="password" placeholder="Password" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirm Password" required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Sign Up</button>
       <div *ngIf="signUpError" class="error-message">{{ signUpError }}</div>
     </form>
-  </div>
+  </mat-card>
 </div>

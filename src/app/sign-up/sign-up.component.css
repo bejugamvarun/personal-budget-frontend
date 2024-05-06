@@ -1,21 +1,27 @@
+/* Adjusts the outer container to flexbox centering */
 .signup-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 82vh;
+  padding: 20px; /* Add padding for better spacing from viewport edges */
 }
 
+/* Styles for the material card which contains the form */
 .form-container {
-  width: 300px;
+  width: 100%; /* Use 100% width of its parent */
+  max-width: 350px; /* Maximum width of the form */
+  padding: 20px; /* Adds space between the form and the card edges */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds shadow for better visibility */
 }
 
-.signup-container input {
+/* Ensures that mat-form-field takes the full width of the form */
+mat-form-field {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
 }
 
+/* Button styling */
 .signup-container button {
   width: 100%;
   padding: 10px;
@@ -23,13 +29,17 @@
   color: white;
   border: none;
   cursor: pointer;
+  margin-top: 10px; /* Adds space between the last input field and the button */
 }
 
+/* Button hover effect */
 .signup-container button:hover {
   background-color: #555;
 }
 
+/* Error message styling */
 .error-message {
   color: red;
   margin-top: 10px;
+  text-align: center; /* Centers the error message */
 }

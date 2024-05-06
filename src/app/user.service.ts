@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://3.145.178.204:3000';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
   getUsername(): Observable<any> {

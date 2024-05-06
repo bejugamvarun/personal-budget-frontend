@@ -1,6 +1,6 @@
 <div class="bar-chart-container">
   <div class="chart-wrapper" aria-label="Bar Chart">
-    <canvas baseChart
+    <canvas id="barChart" baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
@@ -11,10 +11,12 @@
   <div class="text-content">
     <h2>Budget vs Expense for {{ selectedMonth }}</h2>
     <div class="select-container">
-      <label for="selectMonth" class="font-set">Choose the month</label>
-      <select [(ngModel)]="selectedMonth" (change)="onChangeMonth()" id="selectMonth" aria-label="Select Month">
-        <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-      </select>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose the month</mat-label>
+        <mat-select [(value)]="selectedMonth" (selectionChange)="onChangeMonth()" id="selectMonth" aria-label="Select Month">
+          <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <p></p>
   </div>

@@ -1,31 +1,31 @@
-<div class="expense-container" role="region" aria-label="Expense Data">
+<div class="expense-container">
   <div class="component-container">
     <div class="content-container" [ngClass]="{ 'centered': !showAddExpense, 'half-width': showAddExpense }">
       <h2>Expense Data for {{ selectedMonth }}</h2>
       <div>
-        <label for="selectMonth">Select the month</label>
-        <select [(ngModel)]="selectedMonth" (change)="onChangeMonth()" id="selectMonth" aria-label="Select Month">
-          <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-        </select>
+        <mat-form-field>
+          <mat-label>Select the month</mat-label>
+          <mat-select [(value)]="selectedMonth" (selectionChange)="onChangeMonth()">
+            <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="table-wrapper">
-        <table summary="Expense Data">
-          <thead>
-            <tr>
-              <th scope="col">Expense Criteria</th>
-              <th scope="col">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let expense of expenses">
-              <td>{{ expense.budgetCriteria}}</td>
-              <td>{{ expense.expense }}</td>
-            </tr>
-          </tbody>
+        <table mat-table [dataSource]="expenses" class="mat-elevation-z8">
+          <ng-container matColumnDef="budgetCriteria">
+            <th mat-header-cell *matHeaderCellDef>Expense Criteria</th>
+            <td mat-cell *matCellDef="let expense">{{ expense.budgetCriteria }}</td>
+          </ng-container>
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Amount</th>
+            <td mat-cell *matCellDef="let expense">{{ expense.amount }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="['budgetCriteria', 'amount']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['budgetCriteria', 'amount'];"></tr>
         </table>
       </div>
       <div class="add-expense">
-        <button (click)="toggleAddExpense()" *ngIf="!showAddExpense" aria-label="Add Expense">Add Expense</button>
+        <button mat-raised-button color="primary" (click)="toggleAddExpense()" *ngIf="!showAddExpense">Add Expense</button>
       </div>
     </div>
   </div>

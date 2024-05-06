@@ -1,13 +1,12 @@
 <div class="donut-chart-container" role="region" aria-label="Expense Chart">
   <div class="text-content">
     <h2>Expense for {{ selectedMonth }}</h2>
-    <div class="select-container">
-      <label for="selectMonth" class="font-set">Choose the month</label>
-      <select [(ngModel)]="selectedMonth" (change)="onChangeMonth()" id="selectMonth" aria-label="Select Month">
-        <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-      </select>
-    </div>
-    <p></p>
+    <mat-form-field class="select-container">
+      <mat-label>Choose the month</mat-label>
+      <mat-select [(ngModel)]="selectedMonth" (selectionChange)="onChangeMonth()">
+        <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="divider-container" role="separator" aria-hidden="true">
     <!-- Placeholder -->

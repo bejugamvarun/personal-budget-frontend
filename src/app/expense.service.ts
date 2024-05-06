@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExpenseService {
-  private apiUrl = 'http://3.145.178.204:3000';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
   token = localStorage.getItem('token');

@@ -1,27 +1,23 @@
 <div class="login-container">
-  <div class="login">
-  </div>
-  <div class="form-container">
+  <mat-card class="form-container">
+    <h2 class="login">Login</h2>
     <form (ngSubmit)="onSubmit()">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" [(ngModel)]="username" placeholder="Enter your username" required>
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Enter your password" required>
-      </div>
-      <div>
-        <button type="submit">Log In</button>
-      </div>
-      <div *ngIf="loginError" class="error-message">{{ loginError }}</div>
+      <mat-form-field>
+        <input matInput type="text" id="username" name="username" [(ngModel)]="username" placeholder="Username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" id="password" name="password" [(ngModel)]="password" placeholder="Password" required>
+      </mat-form-field>
       <div class="forgot-password">
-        <a [routerLink]="['/forgot-password']">Forgot Password?</a>
+        <a routerLink="/forgot-password">Forgot Password?</a>
       </div>
-      <hr class="line">
-      <div class="create-account">
-        <button class="create-btn" [routerLink]="['/signUp']">Create New Account</button>
-      </div>
+      <button mat-raised-button color="primary" type="submit">Login</button>
+      <div *ngIf="loginError" class="error-message">{{ loginError }}</div>
     </form>
-  </div>
+    <hr class="line">
+    <div class="create-account">
+      <span>Don't have an account?</span>
+      <button mat-button color="primary" class="create-btn" routerLink="/signUp">Create One</button>
+    </div>
+  </mat-card>
 </div>

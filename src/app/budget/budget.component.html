@@ -3,29 +3,29 @@
     <div class="content-container" [ngClass]="{ 'centered': !showAddBudget, 'half-width': showAddBudget }">
       <h2>Budget Data for {{ selectedMonth }}</h2>
       <div>
-        <label for="selectMonth">Select the month</label>
-        <select [(ngModel)]="selectedMonth" (change)="onChangeMonth()" id="selectMonth" aria-label="Select Month">
-          <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-        </select>
+        <mat-form-field appearance="fill">
+          <mat-label>Select the month</mat-label>
+          <mat-select [(value)]="selectedMonth" (selectionChange)="onChangeMonth()">
+            <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="table-wrapper">
-        <table summary="Budget Data">
-          <thead>
-            <tr>
-              <th scope="col">Budget Criteria</th>
-              <th scope="col">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let budget of budgets">
-              <td>{{ budget.budgetCriteria }}</td>
-              <td>{{ budget.amount }}</td>
-            </tr>
-          </tbody>
+        <table mat-table [dataSource]="budgets" class="mat-elevation-z8">
+          <ng-container matColumnDef="budgetCriteria">
+            <th mat-header-cell *matHeaderCellDef>Budget Criteria</th>
+            <td mat-cell *matCellDef="let budget">{{ budget.budgetCriteria }}</td>
+          </ng-container>
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Amount</th>
+            <td mat-cell *matCellDef="let budget">{{ budget.amount }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
       </div>
       <div class="add-budget">
-        <button (click)="toggleAddBudget()" *ngIf="!showAddBudget" aria-label="Add Budget">Add Budget</button>
+        <button mat-raised-button color="primary" (click)="toggleAddBudget()" *ngIf="!showAddBudget">Add Budget</button>
       </div>
     </div>
   </div>

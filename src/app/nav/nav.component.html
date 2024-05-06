@@ -1,18 +1,18 @@
-<nav>
+<nav mat-toolbar color="primary">
   <div class="side-by-side">
     <div class="logo">
       <a [routerLink]="['/']">
-        <img src="assets/budget.jpg" alt="Logo">
+        <mat-icon style="color: #d8cdcd;">home</mat-icon>
       </a>
     </div>
     <div class="title-container">
       <h2 class="title">Personal Budget</h2>
     </div>
   </div>
-  <ul class="nav-links">
-    <li><a [routerLink]="['/']">Home</a></li>
-    <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']">Login/SignUp</a></li>
-    <li *ngIf="isLoggedIn"><a [routerLink]="['/dashboard']">Dashboard</a></li>
-    <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
-  </ul>
+  <div class="nav-links">
+    <a mat-button routerLink="/">Home</a>
+    <a mat-button *ngIf="!isLoggedIn" routerLink="/login">Login/SignUp</a>
+    <a mat-button *ngIf="isLoggedIn" routerLink="/dashboard">Dashboard</a>
+    <a mat-button *ngIf="isLoggedIn" (click)="logout()">Logout</a>
+  </div>
 </nav>

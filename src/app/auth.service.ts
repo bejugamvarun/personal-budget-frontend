@@ -10,13 +10,14 @@ import {
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TokenExpiryComponent } from './token-expiry/token-expiry.component';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private isAuthenticatedSubject: BehaviorSubject<boolean>;
-  private apiUrl = 'http://3.145.178.204:3000';
+  private apiUrl = environment.apiUrl;
   private dialogRefer: MatDialogRef<TokenExpiryComponent> | undefined;
 
   constructor(
@@ -166,7 +167,7 @@ export class AuthService {
       return of(expired);
     }
 
-    return throwError(true);
+    return throwError(() => true);
   }
 
   resetPassword(username: string): Observable<any> {
@@ -178,7 +179,7 @@ export class AuthService {
           if (error && error.error && error.error.message) {
             errorMessage = error.error.message;
           }
-          return throwError(errorMessage);
+          return throwError(() => errorMessage);
         })
       );
   }

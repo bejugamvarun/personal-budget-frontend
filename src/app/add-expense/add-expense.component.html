@@ -1,23 +1,29 @@
-<form (ngSubmit)="onSubmit()" role="form">
-  <div>
-    <label for="selectedMonth">Select Month:</label>
-    <select [(ngModel)]="selectedMonth" name="selectedMonth" id="selectedMonth" (change)="getBudgetsForSelectedMonth()" aria-label="Select Month">
-      <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-    </select>
+<form (ngSubmit)="onSubmit()" role="form" class="form-container">
+  <div class="form-field">
+    <mat-form-field appearance="fill">
+      <mat-label>Select Month:</mat-label>
+      <mat-select [(value)]="selectedMonth" name="selectedMonth" id="selectedMonth" (selectionChange)="getBudgetsForSelectedMonth()" aria-label="Select Month">
+        <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div *ngIf="selectedMonth">
-    <label for="selectedBudget">Select Budget:</label>
-    <select [(ngModel)]="selectedBudget" name="selectedBudget" id="selectedBudget" aria-label="Select Budget">
-      <option *ngFor="let budget of budgets" [value]="budget">{{ budget }}</option>
-    </select>
+  <div class="form-field" *ngIf="selectedMonth">
+    <mat-form-field appearance="fill">
+      <mat-label>Select Budget:</mat-label>
+      <mat-select [(value)]="selectedBudget" name="selectedBudget" id="selectedBudget" aria-label="Select Budget">
+        <mat-option *ngFor="let budget of budgets" [value]="budget">{{ budget }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div>
-    <label for="expense">Expense:</label>
-    <input type="number" id="expense" [(ngModel)]="expense" name="amount" required aria-label="Expense" aria-describedby="expenseValidation">
-    <div *ngIf="addExpenseError" class="error-message" id="expenseValidation">{{ addExpenseError }}</div>
+  <div class="form-field">
+    <mat-form-field appearance="fill">
+      <mat-label>Expense:</mat-label>
+      <input matInput type="number" id="expense" [(ngModel)]="expense" name="amount" required aria-label="Expense" aria-describedby="expenseValidation">
+      <mat-error *ngIf="addExpenseError" id="expenseValidation">{{ addExpenseError }}</mat-error>
+    </mat-form-field>
   </div>
-  <div>
-    <button type="submit" [disabled]="expense <= 0 || !selectedBudget" aria-label="Add Expense">
+  <div class="form-field">
+    <button mat-raised-button type="submit" [disabled]="expense <= 0 || !selectedBudget" aria-label="Add Expense">
       Add Expense
     </button>
   </div>
